@@ -1,0 +1,43 @@
+{% extends 'client.html.twig' %}
+
+{% block title %}Détails de la location{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="display-4">Détails de la location</h1>
+        {% if location %}
+            <div class="location-details">
+                <h2>Clé Token: {{ location.Key_token }}</h2>
+                <p><strong>Statut de la location:</strong> {% if location.is_expired %}Expirée{% else %}Active{% endif %}</p>
+                <p><strong>Date d'expiration:</strong> {{ location.date_exp|date('d-m-Y H:i:s') }}</p>
+                
+                <h3>Logiciel</h3>
+                <ul>
+                    <li><strong>Titre:</strong> {{ logiciel.titre }}</li>
+                    <li><strong>Description:</strong> {{ logiciel.description }}</li>
+                    <li><strong>Prix:</strong> {{ logiciel.prix }} €</li>
+                    <!-- Ajoutez d'autres détails du logiciel au besoin -->
+                </ul>
+
+                <h3>Utilisateur</h3>
+                <ul>
+                    <li><strong>Nom d'utilisateur:</strong> {{ user.username }}</li>
+                    <li><strong>Email:</strong> {{ user.email }}</li>
+                    <!-- Ajoutez d'autres détails de l'utilisateur au besoin -->
+                </ul>
+
+                <!-- Ajoutez d'autres détails de la location au besoin -->
+
+                <form method="post" action="{{ path('app_reservation_add', {'idevt': evenements.idevt}) }}">
+                    <button type="submit" class="btn btn-success">Confirmer la location</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Aucun détail de location trouvé.
+            </div>
+        {% endif %}
+
+        <a href="{{ path('app_evenement_indexCl') }}" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+    </div>
+{% endblock %}

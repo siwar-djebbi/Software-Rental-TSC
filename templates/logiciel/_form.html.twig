@@ -1,0 +1,14 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.titre) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.prix) }}
+    
+    {# Add the file upload input for the imagelogiciel field #}
+    {{ form_row(form.imagelogiciel) }}
+    
+    {# Add the file upload input for the videologiciel field #}
+    {{ form_row(form.videologiciel) }}
+    
+    
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

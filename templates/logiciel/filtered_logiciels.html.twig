@@ -1,0 +1,34 @@
+{# filtered_logiciels.html.twig #}
+
+{% extends 'client.html.twig' %}
+
+{% block title %}Logiciels Filtrés{% endblock %}
+
+{% block body %}
+    <h1>Logiciels Filtrés</h1>
+
+    {% if logiciels is not empty %}
+        <div class="row mt-3">
+            {% for logiciel in logiciels %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card border-primary">
+                        <img src="{{ asset('assets/admin/src/assets/uploads/' ~ logiciel.imagelogiciel) }}" class="card-img-top" alt="Logiciel Image">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ logiciel.titre }}</h3>
+                            <p class="card-text">{{ logiciel.description }}</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Prix:</strong> <span class="text-danger">{{ logiciel.prix }} €</span></li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_logiciel_moreinfo', {'id': logiciel.id}) }}" class="btn btn-info">Plus de détails</a>
+                            <a href="{{ path('app_logiciel_edit', {'id': logiciel.id}) }}" class="btn btn-success">Louer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun logiciel trouvé pour cette catégorie.</p>
+    {% endif %}
+{% endblock %}

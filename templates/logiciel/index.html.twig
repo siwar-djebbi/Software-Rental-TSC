@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logiciel index{% endblock %}
+
+{% block body %}
+    <h1>Logiciel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Imagelogiciel</th>
+                <th>Videologiciel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for logiciel in logiciels %}
+            <tr>
+                <td>{{ logiciel.id }}</td>
+                <td>{{ logiciel.titre }}</td>
+                <td>{{ logiciel.description }}</td>
+                <td>{{ logiciel.prix }}</td>
+                <td>
+                        {% if logiciel.imagelogiciel %}
+                            <img src="{{ asset('assets/admin/src/assets/uploads/' ~ logiciel.imagelogiciel) }}" style="max-width: 100px; max-height: 75px;" class="img-fluid">
+                        {% else %}
+                            No Image Available
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if logiciel.videologiciel %}
+    <div class="video-container">
+        <video width="100%" height="auto" controls>
+            <source src="{{ asset('assets/admin/src/assets/uploads/' ~ logiciel.videologiciel) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+{% else %}
+    <p>No Video Available</p>
+{% endif %}
+                <td>
+                    <a href="{{ path('app_logiciel_show', {'id': logiciel.id}) }}">show</a>
+                    <a href="{{ path('app_logiciel_edit', {'id': logiciel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_logiciel_new') }}">Create new</a>
+{% endblock %}

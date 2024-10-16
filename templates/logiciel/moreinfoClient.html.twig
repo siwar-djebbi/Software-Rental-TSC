@@ -1,0 +1,50 @@
+{% extends 'client.html.twig' %}
+
+{% block titlefront %}Logiciel{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" style="background-color: #ffe1e6; padding: 20px; border-radius: 10px;">
+        <h1 class="text-primary mb-4">{{ logiciel.titre }}</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-info">Titre</th>
+                            <td>{{ logiciel.titre }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-info">Description</th>
+                            <td>{{ logiciel.description }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-info">Prix</th>
+                            <td>{{ logiciel.prix }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-info">Catégorie</th>
+                            <td>{{ logiciel.categorie ? logiciel.categorie.label : 'N/A' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-6">
+                <!-- You may adjust the display of images or videos according to your needs -->
+                {% if logiciel.videologiciel %}
+                    <div class="video-container">
+                        <video width="100%" height="auto" controls>
+                            <source src="{{ asset('assets/admin/src/assets/uploads/' ~ logiciel.videologiciel) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                {% else %}
+                    <p>No Video Available</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{{ path('app_logiciel_pageCl') }}" class="btn btn-secondary mt-4">Retour à la page d'accueil</a>
+    </div>
+{% endblock %}

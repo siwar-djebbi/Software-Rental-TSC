@@ -1,0 +1,9 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+live_search:
+    path: /live-search
+    controller: 'App\Controller\LogicielController::liveSearch'
+filter_logiciels_by_category:
+    path: '/filter-logiciels'
+    controller: 'App\Controller\LogicielController::filterLogicielsByCategory'

@@ -1,0 +1,4 @@
+.custom-btn {
+    padding: 10px 15px; /* Adjust padding for both vertical and horizontal spacing */
+    font-size: 14px; /* Adjust font size as needed */
+}

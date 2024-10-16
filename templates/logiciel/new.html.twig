@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Logiciel{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="display-4">Create New Evenement</h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                {{ include('logiciel/_form.html.twig') }}
+            </div>
+        </div>
+
+        <a href="{{ path('app_logiciel_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+    </div>
+{% endblock %}
